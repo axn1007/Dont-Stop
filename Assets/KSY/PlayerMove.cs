@@ -14,6 +14,9 @@ public class PlayerMove : MonoBehaviour
 
     CharacterController CC;
 
+    // 플레이어 오른손에 방망이
+    public GameObject bath;
+
     void Start()
     {
         CC = GetComponent<CharacterController>();
@@ -22,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         MoveCtrl();
+        WeaponShow();
     }
 
     void MoveCtrl()
@@ -42,6 +46,14 @@ public class PlayerMove : MonoBehaviour
         if(Input.GetButtonDown("Jump"))
         {
             yVelocity = jumpPower;
+        }
+    }
+
+    void WeaponShow()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LHand))
+        {
+            bath.SetActive(true);
         }
     }
 }
